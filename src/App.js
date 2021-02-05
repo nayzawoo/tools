@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 import clsx from "clsx";
 import {
   fade,
@@ -214,7 +214,7 @@ export default function PrimarySearchAppBar() {
             </div>
             <Divider />
             <List>
-              <ListItem button key="Home" component={Link} to={"/tools/"}>
+              <ListItem button key="Home" component={Link} to={"/"}>
                 <ListItemIcon>
                   <HomeIcon />
                 </ListItemIcon>
@@ -231,7 +231,7 @@ export default function PrimarySearchAppBar() {
           <main className={classes.content}>
             <div className={classes.toolbar} />
             <Switch>
-              <Route exact path="/tools">
+              <Route exact path="/">
                 <Home />
               </Route>
               <Route path="/about">
