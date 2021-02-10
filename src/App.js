@@ -243,7 +243,6 @@ export default function PrimarySearchAppBar() {
               </ListItem>
             </List>
           </Drawer>
-          x
           <main className={classes.content}>
             <div className={classes.toolbar} />
             <Suspense fallback={<div>Loading...</div>}>

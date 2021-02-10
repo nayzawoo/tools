@@ -6,6 +6,7 @@ import styled from "styled-components";
 import React from "react";
 import "../fonts/zawgyi.ttf";
 import "./ZgUni.css";
+import PageTitle from './PageTitle'
 import { zg2uni, uni2zg } from "../Libs/Rabbit";
 import FileCopyIcon from "@material-ui/icons/FileCopy";
 import Button from "@material-ui/core/Button";
@@ -35,7 +36,7 @@ const styles = (theme) => ({
   },
   button: {
     marginRight: theme.spacing(2),
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(2),
   },
 });
 
@@ -92,13 +93,16 @@ class ZgUni extends React.Component {
     return (
       <div>
         <Toaster position="bottom-right" />
-        <Typography variant="h4" gutterBottom>
+        <PageTitle>
           Zawgyi
-          <SwapHorizIcon fontSize="large" style={{ top: '7px', position: 'relative' }}/>
+          <SwapHorizIcon
+            fontSize="large"
+            style={{ top: "7px", position: "relative" }}
+          />
           Unicode Converter
-        </Typography>
+        </PageTitle>
         <Grid container spacing={3}>
-          <Grid item sm={12} md={6}>
+          <Grid item xs={12} sm={12} md={6}>
             <ZawgyiInputWrapper>
               <TextField
                 fullWidth
@@ -117,7 +121,7 @@ class ZgUni extends React.Component {
               />
             </ZawgyiInputWrapper>
           </Grid>
-          <Grid item sm={12} md={6}>
+          <Grid item xs={12} sm={12} md={6}>
             <UnicodeInputWrapper>
               <TextField
                 fullWidth
