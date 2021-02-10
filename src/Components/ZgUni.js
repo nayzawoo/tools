@@ -1,20 +1,18 @@
-// import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
+import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 import React from "react";
 import "../fonts/zawgyi.ttf";
 import "./ZgUni.css";
 import { zg2uni, uni2zg } from "../Libs/Rabbit";
-// import IconButton from "@material-ui/core/IconButton";
 import FileCopyIcon from "@material-ui/icons/FileCopy";
-// import DeleteIcon from "@material-ui/icons/Delete";
 import Button from "@material-ui/core/Button";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import toast, { Toaster } from "react-hot-toast";
-
-// const copiedToast = () => toast("Here is your toast.");
+import ClearIcon from "@material-ui/icons/Clear";
+import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
 
 const ZawgyiInputWrapper = styled.div`
   margin-bottom: 24px;
@@ -25,6 +23,9 @@ const UnicodeInputWrapper = styled.div`
 `;
 
 const styles = (theme) => ({
+  flexRow: {
+    flexGrow: 1,
+  },
   zawgyiInput: {
     fontFamily: '"Zawgyi"',
     lineHeight: 1.6,
@@ -34,6 +35,7 @@ const styles = (theme) => ({
   },
   button: {
     marginRight: theme.spacing(2),
+    marginBottom: theme.spacing(3),
   },
 });
 
@@ -50,6 +52,7 @@ class ZgUni extends React.Component {
     this.handleCopyZawgyi = this.handleCopyZawgyi.bind(this);
     this.handleCopyUnicode = this.handleCopyUnicode.bind(this);
     this.handleOnCopy = this.handleOnCopy.bind(this);
+    this.handleClear = this.handleClear.bind(this);
   }
 
   handleChangeZg(event) {
@@ -57,7 +60,6 @@ class ZgUni extends React.Component {
       zawgyi: event.target.value,
       unicode: zg2uni(event.target.value),
     });
-    // console.log(event.target.value);
   }
 
   handleChangeUnicode(event) {
@@ -65,7 +67,13 @@ class ZgUni extends React.Component {
       unicode: event.target.value,
       zawgyi: uni2zg(event.target.value),
     });
-    //   console.log(event.target.value);
+  }
+
+  handleClear(event) {
+      this.setState({
+          unicode: '',
+          zawgyi: '',
+      })
   }
 
   handleCopyZawgyi(event) {}
@@ -83,48 +91,61 @@ class ZgUni extends React.Component {
 
     return (
       <div>
-        <Toaster
-          position="bottom-right"
-        />
+        <Toaster position="bottom-right" />
         <Typography variant="h4" gutterBottom>
-          Zawgyi - Unicode Converter
+          Zawgyi
+          <SwapHorizIcon fontSize="large" style={{ top: '7px', position: 'relative' }}/>
+          Unicode Converter
         </Typography>
-        <ZawgyiInputWrapper>
-          <TextField
-            fullWidth
-            id="outlined-multiline-static"
-            label="Zawgyi"
-            multiline
-            rows={6}
-            InputProps={{
-              classes: {
-                input: classes.zawgyiInput,
-              },
-            }}
-            value={this.state.zawgyi}
-            onChange={this.handleChangeZg}
-            variant="outlined"
-          />
-        </ZawgyiInputWrapper>
-
-        <UnicodeInputWrapper>
-          <TextField
-            fullWidth
-            id="outlined-multiline-static"
-            label="Unicode"
-            multiline
-            rows={6}
-            InputProps={{
-              classes: {
-                input: classes.unicodeInput,
-              },
-            }}
-            value={this.state.unicode}
-            onChange={this.handleChangeUnicode}
-            variant="outlined"
-          />
-        </UnicodeInputWrapper>
-
+        <Grid container spacing={3}>
+          <Grid item sm={12} md={6}>
+            <ZawgyiInputWrapper>
+              <TextField
+                fullWidth
+                id="outlined-multiline-static"
+                label="Zawgyi"
+                multiline
+                rows={8}
+                InputProps={{
+                  classes: {
+                    input: classes.zawgyiInput,
+                  },
+                }}
+                value={this.state.zawgyi}
+                onChange={this.handleChangeZg}
+                variant="outlined"
+              />
+            </ZawgyiInputWrapper>
+          </Grid>
+          <Grid item sm={12} md={6}>
+            <UnicodeInputWrapper>
+              <TextField
+                fullWidth
+                id="outlined-multiline-static"
+                label="Unicode"
+                multiline
+                rows={8}
+                InputProps={{
+                  classes: {
+                    input: classes.unicodeInput,
+                  },
+                }}
+                value={this.state.unicode}
+                onChange={this.handleChangeUnicode}
+                variant="outlined"
+              />
+            </UnicodeInputWrapper>
+          </Grid>
+        </Grid>
+        <Button
+          variant="contained"
+          color="primary"
+          className={classes.button}
+          startIcon={<ClearIcon />}
+          onClick={this.handleClear}
+        >
+          Clear
+        </Button>
         <CopyToClipboard text={this.state.zawgyi} onCopy={this.handleOnCopy}>
           <Button
             variant="contained"
@@ -136,7 +157,6 @@ class ZgUni extends React.Component {
             Copy Zawgyi
           </Button>
         </CopyToClipboard>
-
         <CopyToClipboard text={this.state.unicode} onCopy={this.handleOnCopy}>
           <Button
             variant="contained"
