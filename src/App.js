@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 import clsx from "clsx";
 import {
@@ -20,11 +20,15 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import HomeIcon from "@material-ui/icons/Home";
 import InfoIcon from "@material-ui/icons/Info";
+import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Divider from "@material-ui/core/Divider";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
+import About from './Components/About';
+const ZgUni = lazy(() => import("./Components/ZgUni"));
+
 
 const drawerWidth = 240;
 
@@ -220,6 +224,17 @@ export default function PrimarySearchAppBar() {
                 </ListItemIcon>
                 <ListItemText primary="Home" />
               </ListItem>
+              <ListItem
+                button
+                key="ZawGyiUnicode"
+                component={Link}
+                to={"/zawgyi-unicode-converter"}
+              >
+                <ListItemIcon>
+                  <SwapHorizIcon />
+                </ListItemIcon>
+                <ListItemText primary="ZG-UNI" />
+              </ListItem>
               <ListItem button key="About" component={Link} to={"/about/"}>
                 <ListItemIcon>
                   <InfoIcon />
@@ -228,19 +243,24 @@ export default function PrimarySearchAppBar() {
               </ListItem>
             </List>
           </Drawer>
+          x
           <main className={classes.content}>
             <div className={classes.toolbar} />
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route path="/about">
-                <About />
-              </Route>
-              <Route path="/dashboard">
-                <Dashboard />
-              </Route>
-            </Switch>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route
+                  exact
+                  path="/zawgyi-unicode-converter"
+                  component={ZgUni}
+                ></Route>
+                <Route path="/about">
+                  <About />
+                </Route>
+              </Switch>
+            </Suspense>
           </main>
         </div>
       </ThemeProvider>
@@ -251,23 +271,9 @@ export default function PrimarySearchAppBar() {
 function Home() {
   return (
     <div>
-      <h1>Home</h1>
-    </div>
-  );
-}
-
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-}
-
-function Dashboard() {
-  return (
-    <div>
-      <h2>Dashboard</h2>
+      <Typography variant="h3" component="h3">
+        Home
+      </Typography>
     </div>
   );
 }
