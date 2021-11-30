@@ -1,4 +1,4 @@
-import TextField from "@material-ui/core/TextField";
+import { TextField, Link } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
@@ -174,6 +174,10 @@ class ZgUni extends React.Component {
             Copy Unicode
           </Button>
         </CopyToClipboard>
+        <br></br>
+        <Link color="inherit" href="https://www.rabbit-converter.org/Rabbit">
+          ℹ️ Rabbit Converter
+        </Link>
       </div>
     );
   }
