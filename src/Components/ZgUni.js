@@ -1,4 +1,3 @@
-import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
@@ -7,13 +6,14 @@ import React from "react";
 import "../fonts/zawgyi.ttf";
 import "./ZgUni.css";
 import PageTitle from './PageTitle'
-import { zg2uni, uni2zg } from "../Libs/Rabbit";
+import { zg2uni, uni2zg } from "../Libs/rabbit";
 import FileCopyIcon from "@material-ui/icons/FileCopy";
 import Button from "@material-ui/core/Button";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import toast, { Toaster } from "react-hot-toast";
 import ClearIcon from "@material-ui/icons/Clear";
 import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
+
 
 const ZawgyiInputWrapper = styled.div`
   margin-bottom: 24px;
@@ -57,6 +57,7 @@ class ZgUni extends React.Component {
   }
 
   handleChangeZg(event) {
+    // Stretchy.resize(event.target)
     this.setState({
       zawgyi: event.target.value,
       unicode: zg2uni(event.target.value),
@@ -64,6 +65,7 @@ class ZgUni extends React.Component {
   }
 
   handleChangeUnicode(event) {
+    // Stretchy.resize(event.target)
     this.setState({
       unicode: event.target.value,
       zawgyi: uni2zg(event.target.value),
@@ -109,7 +111,7 @@ class ZgUni extends React.Component {
                 id="outlined-multiline-static"
                 label="Zawgyi"
                 multiline
-                rows={8}
+                minRows={8}
                 InputProps={{
                   classes: {
                     input: classes.zawgyiInput,
@@ -128,7 +130,7 @@ class ZgUni extends React.Component {
                 id="outlined-multiline-static"
                 label="Unicode"
                 multiline
-                rows={8}
+                minRows={8}
                 InputProps={{
                   classes: {
                     input: classes.unicodeInput,

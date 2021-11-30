@@ -3,8 +3,8 @@ import React, { Suspense, lazy } from "react";
 import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 import clsx from "clsx";
 import {
-  fade,
-  createMuiTheme,
+  alpha,
+  createTheme,
   makeStyles,
   ThemeProvider,
 } from "@material-ui/core/styles";
@@ -32,7 +32,7 @@ const ZgUni = lazy(() => import("./Components/ZgUni"));
 
 const drawerWidth = 240;
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     type: "dark",
   },
@@ -72,9 +72,9 @@ const useStyles = makeStyles((theme) => ({
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
+    backgroundColor: alpha(theme.palette.common.white, 0.15),
     "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: alpha(theme.palette.common.white, 0.25),
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
