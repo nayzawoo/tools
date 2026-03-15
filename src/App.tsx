@@ -29,10 +29,12 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import NoteIcon from "@mui/icons-material/Note";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import BookIcon from "@mui/icons-material/Book";
 
 import Dashboard from "./pages/Dashboard";
 import ZawgyiUnicodeConverter from "./pages/ZawgyiUnicodeConverter";
 import Notes from "./pages/Notes";
+import Dhamma from "./pages/Dhamma";
 
 /* ── Constants ── */
 
@@ -57,6 +59,7 @@ const darkTheme = createTheme({
 const menuItems = [
   { text: "Dashboard", icon: <DashboardIcon />, path: "/" },
   { text: "Notes", icon: <NoteIcon />, path: "/notes" },
+  { text: "Dhamma", icon: <BookIcon />, path: "/dhamma" },
   {
     text: "ZG-Uni",
     icon: <SwapHorizIcon />,
@@ -257,6 +260,7 @@ function AppLayout() {
             element={<ZawgyiUnicodeConverter />}
           />
           <Route path="/notes" element={<Notes />} />
+          <Route path="/dhamma" element={<Dhamma />} />
         </Routes>
       </MainContent>
     </LayoutRoot>
