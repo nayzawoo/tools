@@ -149,6 +149,7 @@ export default function Dhamma() {
               </Typography>
               <Typography
                 variant="body1"
+                component="div"
                 sx={{
                   fontFamily: "inherit",
                   fontSize: "1.1rem",

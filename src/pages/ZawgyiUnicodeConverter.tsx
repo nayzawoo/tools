@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, Button, Stack, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import ClearIcon from "@mui/icons-material/Clear";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
-import zawgyiFont from "../fonts/zawgyi.ttf";
+import zawgyiFont from "../assets/fonts/zawgyi.ttf";
 // @ts-ignore
-import { zg2uni, uni2zg } from "../Libs/Rabbit";
+import { zg2uni, uni2zg } from "/src/Libs/Rabbit";
 
 /* ── Styled Components ── */
 

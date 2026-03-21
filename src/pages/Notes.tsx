@@ -154,12 +154,13 @@ export default function Notes() {
       <TabBar>
         <StyledTabs
           value={activeId}
-          onChange={(_, v) => setActiveTab(v)}
+          onChange={(_: any, v: string) => setActiveTab(v)}
           variant="scrollable"
           scrollButtons="auto"
         >
           {tabs.map((tab) => (
             <Tab
+              component="div"
               key={tab.id}
               value={tab.id}
               onDoubleClick={() => handleTitleDoubleClick(tab.id)}
@@ -168,7 +169,9 @@ export default function Notes() {
                   <span>{tab.title}</span>
                   <CloseButton
                     size="small"
-                    onClick={(e) => handleCloseTab(e, tab.id)}
+                    onClick={(e: React.MouseEvent<Element, MouseEvent>) =>
+                      handleCloseTab(e, tab.id)
+                    }
                   >
                     <CloseIcon sx={{ fontSize: 14 }} />
                   </CloseButton>
@@ -194,7 +197,9 @@ export default function Notes() {
           <Textarea
             ref={textareaRef}
             value={activeTab?.content || ""}
-            onChange={(e) => updateContent(activeId, e.target.value)}
+            onChange={(e: { target: { value: string } }) =>
+              updateContent(activeId, e.target.value)
+            }
             onScroll={handleScroll}
             placeholder="Start typing..."
           />

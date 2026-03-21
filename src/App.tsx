@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import PWABadge from "./PWABadge.tsx";
 import {
   AppBar,
   Box,
@@ -262,6 +263,7 @@ function AppLayout() {
           <Route path="/notes" element={<Notes />} />
           <Route path="/dhamma" element={<Dhamma />} />
         </Routes>
+        <PWABadge />
       </MainContent>
     </LayoutRoot>
   );
